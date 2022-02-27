@@ -33,9 +33,6 @@ namespace API.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Picture")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("PictureUrl")
                         .HasColumnType("TEXT");
 
