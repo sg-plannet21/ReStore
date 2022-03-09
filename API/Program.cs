@@ -16,16 +16,16 @@ namespace API
             using var scope = host.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-            try
+            try 
             {
                 context.Database.Migrate();
                 DbInitialiser.Initialise(context);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Problem Migrating Data");
+                logger.LogError(ex, "Problem migrating data");
             }
-            
+
             host.Run();
         }
 
