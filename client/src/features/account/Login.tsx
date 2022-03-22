@@ -21,7 +21,6 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
-  console.log("location", location);
   const from = (location.state as LocationState)?.from?.pathname || "/catalog";
 
   const {

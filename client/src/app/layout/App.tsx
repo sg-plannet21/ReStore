@@ -25,6 +25,7 @@ import Login from "../../features/account/Login";
 import Register from "../../features/account/Register";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
 import ProtectedRoute from "./ProtectedRoute";
+import Order from "../../features/orders/Orders";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -73,6 +74,7 @@ function App() {
             element={<ProtectedRoute redirectTo="/login" isAllowed={!!user} />}
           >
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/orders" element={<Order />} />
           </Route>
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:id" element={<ProductDetails />} />
