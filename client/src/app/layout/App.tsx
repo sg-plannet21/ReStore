@@ -18,6 +18,7 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../features/basket/BasketPage";
 import LoadingComponent from "./LoadingComponent";
+import CheckoutPage from "../../features/checkout/CheckoutPage";
 import { useAppDispatch, useAppSelector } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import Login from "../../features/account/Login";
@@ -26,6 +27,7 @@ import { fetchCurrentUser } from "../../features/account/accountSlice";
 import ProtectedRoute from "./ProtectedRoute";
 import Order from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
+import ContainedRoute from "./ContainedRoute";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -67,9 +69,9 @@ function App() {
       <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       <CssBaseline />
       <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
-      <Container>
-        <Routes>
-          <Route index element={<HomePage />} />
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route element={<ContainedRoute />}>
           <Route
             element={<ProtectedRoute redirectTo="/login" isAllowed={!!user} />}
           >
@@ -85,8 +87,8 @@ function App() {
           <Route path="/basket" element={<BasketPage />} />
           <Route path="/server-error" element={<ServerError />} />
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Container>
+        </Route>
+      </Routes>
     </ThemeProvider>
   );
 }
