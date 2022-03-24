@@ -62,7 +62,7 @@ namespace API
                 });
             });
 
-           services.AddDbContext<StoreContext>(options =>
+            services.AddDbContext<StoreContext>(options =>
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
                 
