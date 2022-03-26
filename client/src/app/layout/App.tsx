@@ -1,9 +1,4 @@
-import {
-  Container,
-  CssBaseline,
-  createTheme,
-  ThemeProvider,
-} from "@mui/material";
+import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 import { useState, useEffect, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -18,7 +13,6 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../features/basket/BasketPage";
 import LoadingComponent from "./LoadingComponent";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import { useAppDispatch, useAppSelector } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import Login from "../../features/account/Login";
@@ -28,6 +22,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Order from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 import ContainedRoute from "./ContainedRoute";
+import Inventory from "../../features/admin/Inventory";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -77,6 +72,16 @@ function App() {
           >
             <Route path="/checkout" element={<CheckoutWrapper />} />
             <Route path="/orders" element={<Order />} />
+          </Route>
+          <Route
+            element={
+              <ProtectedRoute
+                redirectTo="/login"
+                isAllowed={!!user && !!user.roles?.includes("Admin")}
+              />
+            }
+          >
+            <Route path="/inventory" element={<Inventory />} />
           </Route>
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/catalog/:id" element={<ProductDetails />} />

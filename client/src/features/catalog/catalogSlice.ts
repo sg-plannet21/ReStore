@@ -108,6 +108,8 @@ export const catalogSlice = createSlice({
     setMetaData: (state, action) => {
       state.metaData = action.payload;
     },
+    setProduct: productsAdapter.upsertOne,
+    removeProduct: productsAdapter.removeOne,
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProductsAsync.pending, (state) => {
@@ -152,5 +154,10 @@ export const productSelectors = productsAdapter.getSelectors(
   (state: RootState) => state.catalog
 );
 
-export const { resetProductParams, setProductParams, setMetaData } =
-  catalogSlice.actions;
+export const {
+  resetProductParams,
+  setProductParams,
+  setMetaData,
+  setProduct,
+  removeProduct,
+} = catalogSlice.actions;
